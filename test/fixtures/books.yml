@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  author: machado
+  year: 1
+  read: false
+
+two:
+  title: MyString
+  author: clarice
+  year: 1
+  read: false

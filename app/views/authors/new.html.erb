@@ -1,0 +1,11 @@
+<% content_for :title, "Novo autor" %>
+
+<h1>Novo autor</h1>
+
+<%= render "form", author: @author %>
+
+<br>
+
+<div>
+  <%= link_to "Voltar para autores", authors_path %>
+</div>
