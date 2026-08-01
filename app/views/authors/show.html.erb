@@ -2,9 +2,10 @@
 
 <%= render @author %>
 
-<div>
-  <%= link_to "Editar este autor", edit_author_path(@author) %> |
-  <%= link_to "Voltar para autores", authors_path %>
-
-  <%= button_to "Excluir este autor", @author, method: :delete %>
+<div class="flex flex-wrap gap-2 mt-auto pt-8">
+  <%= link_to "Editar este autor", edit_author_path(@author), class: "btn btn-primary" %>
+  <%= link_to "Voltar para autores", authors_path, class: "btn btn-secondary" %>
+  <%= button_to "Excluir este autor", @author, method: :delete,
+        form: { data: { turbo_confirm: "Tem certeza que deseja excluir?" } },
+        class: "btn btn-danger" %>
 </div>

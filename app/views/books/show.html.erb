@@ -2,9 +2,10 @@
 
 <%= render @book %>
 
-<div>
-  <%= link_to "Edit this book", edit_book_path(@book) %> |
-  <%= link_to "Back to books", books_path %>
-
-  <%= button_to "Destroy this book", @book, method: :delete %>
+<div class="flex flex-wrap gap-2 mt-auto pt-8">
+  <%= link_to "Editar este livro", edit_book_path(@book), class: "btn btn-primary" %>
+  <%= link_to "Voltar para livros", books_path, class: "btn btn-secondary" %>
+  <%= button_to "Excluir este livro", @book, method: :delete,
+        form: { data: { turbo_confirm: "Tem certeza que deseja excluir?" } },
+        class: "btn btn-danger" %>
 </div>

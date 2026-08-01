@@ -4,9 +4,7 @@
 
 <%= render "form", author: @author %>
 
-<br>
-
-<div>
-  <%= link_to "Ver este autor", @author %> |
-  <%= link_to "Voltar para autores", authors_path %>
+<div class="flex flex-wrap gap-2 mt-auto pt-8">
+  <%= link_to "Ver este autor", @author, class: "btn btn-primary" %>
+  <%= link_to "Voltar para autores", authors_path, class: "btn btn-secondary" %>
 </div>

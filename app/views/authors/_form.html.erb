@@ -1,9 +1,9 @@
-<%= form_with(model: author) do |form| %>
+<%= form_with(model: author, class: "space-y-4") do |form| %>
   <% if author.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(author.errors.count, "erro") %> impediram o cadastro:</h2>
+    <div class="rounded-lg border border-red-300 bg-red-50 p-4 text-red-700">
+      <h2 class="font-medium"><%= pluralize(author.errors.count, "erro") %> impediram o cadastro:</h2>
 
-      <ul>
+      <ul class="list-disc list-inside mt-2 text-sm">
         <% author.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -12,21 +12,21 @@
   <% end %>
 
   <div>
-    <%= form.label :name, "Nome", style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.label :name, "Nome", class: "field-label" %>
+    <%= form.text_field :name, class: "field-input" %>
   </div>
 
   <div>
-    <%= form.label :birth_year, "Ano de nascimento", style: "display: block" %>
-    <%= form.number_field :birth_year %>
+    <%= form.label :birth_year, "Ano de nascimento", class: "field-label" %>
+    <%= form.number_field :birth_year, class: "field-input" %>
   </div>
 
   <div>
-    <%= form.label :bio, "Bio", style: "display: block" %>
-    <%= form.text_area :bio, rows: 4 %>
+    <%= form.label :bio, "Bio", class: "field-label" %>
+    <%= form.text_area :bio, rows: 4, class: "field-input" %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Salvar", class: "btn btn-primary" %>
   </div>
 <% end %>

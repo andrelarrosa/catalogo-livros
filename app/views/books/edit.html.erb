@@ -1,12 +1,10 @@
-<% content_for :title, "Editing book" %>
+<% content_for :title, "Editando livro" %>
 
-<h1>Editing book</h1>
+<h1>Editando livro</h1>
 
 <%= render "form", book: @book %>
 
-<br>
-
-<div>
-  <%= link_to "Show this book", @book %> |
-  <%= link_to "Back to books", books_path %>
+<div class="flex flex-wrap gap-2 mt-auto pt-8">
+  <%= link_to "Ver este livro", @book, class: "btn btn-primary" %>
+  <%= link_to "Voltar para livros", books_path, class: "btn btn-secondary" %>
 </div>

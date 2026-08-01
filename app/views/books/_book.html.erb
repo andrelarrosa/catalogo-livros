@@ -1,22 +1,22 @@
 <div id="<%= dom_id book %>">
   <div>
-    <strong>Title:</strong>
+    <strong>Título:</strong>
     <%= book.title %>
   </div>
 
   <div>
-    <strong>Author:</strong>
+    <strong>Autor:</strong>
     <%= link_to book.author.name, book.author %>
   </div>
 
   <div>
-    <strong>Year:</strong>
+    <strong>Ano:</strong>
     <%= book.year %>
   </div>
 
   <div>
-    <strong>Read:</strong>
-    <%= book.read %>
+    <strong>Lido:</strong>
+    <%= book.read? ? "Sim" : "Não" %>
   </div>
 
 </div>
