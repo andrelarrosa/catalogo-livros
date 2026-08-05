@@ -3,7 +3,7 @@ class AuthorsController < ApplicationController
 
     # GET /authors
     def index
-        @authors = Current.user.authors
+        @authors = Current.user.authors.search_name(params[:q])
     end
 
     # GET /authors/1

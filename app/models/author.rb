@@ -7,4 +7,10 @@ class Author < ApplicationRecord
     validates :birth_year,
               numericality: { only_integer: true, less_than_or_equal_to: Date.current.year },
               allow_blank: true
+
+    def self.search_name(term)
+        return all if term.blank?
+
+        where("name LIKE ?", "%#{sanitize_sql_like(term)}%")
+    end
 end

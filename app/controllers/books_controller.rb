@@ -5,6 +5,8 @@ class BooksController < ApplicationController
   # GET /books or /books.json
   def index
     @books = Current.user.books.includes(:author)
+                             .search_title(params[:q])
+                             .by_read_status(params[:read])
   end
 
   # GET /books/1 or /books/1.json

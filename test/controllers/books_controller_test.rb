@@ -56,6 +56,37 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     assert_response :not_found
   end
 
+  test "filters books by title" do
+    get books_url, params: { q: "casmurro" }
+
+    assert_response :success
+    assert_select "#books", text: /Dom Casmurro/
+    assert_select "#books", text: /A Hora da Estrela/, count: 0
+  end
+
+  test "filters books by read status" do
+    get books_url, params: { read: "read" }
+    assert_select "#books", text: /A Hora da Estrela/
+    assert_select "#books", text: /Dom Casmurro/, count: 0
+
+    get books_url, params: { read: "unread" }
+    assert_select "#books", text: /Dom Casmurro/
+    assert_select "#books", text: /A Hora da Estrela/, count: 0
+  end
+
+  test "combines title and read filters" do
+    get books_url, params: { q: "Dom", read: "read" }
+
+    assert_response :success
+    assert_select "#books div[id^=book_]", count: 0
+  end
+
+  test "blank filters list everything" do
+    get books_url, params: { q: "", read: "" }
+
+    assert_select "#books div[id^=book_]", count: 2
+  end
+
   test "index only lists the current user's books" do
     sign_in_as users(:two)
 
