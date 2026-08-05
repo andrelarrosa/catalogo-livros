@@ -20,6 +20,12 @@ class Book < ApplicationRecord
         end
     end
 
+    def self.by_author(author_id)
+        return all if author_id.blank?
+
+        where(author_id: author_id)
+    end
+
     private
         # O <select> do formulário já só lista os autores do usuário, mas um POST
         # forjado com o author_id de outra pessoa passaria sem esta checagem.

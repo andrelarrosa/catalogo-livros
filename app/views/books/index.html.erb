@@ -10,6 +10,13 @@
     <%= form.search_field :q, value: params[:q], placeholder: "Buscar por título", class: "field-input" %>
   </div>
 
+  <div class="w-48">
+    <%= form.label :author_id, "Autor", class: "field-label" %>
+    <%= form.select :author_id,
+          options_from_collection_for_select(@authors, :id, :name, params[:author_id]),
+          { include_blank: "Todos" }, class: "field-input" %>
+  </div>
+
   <div class="w-40">
     <%= form.label :read, "Situação", class: "field-label" %>
     <%= form.select :read,
