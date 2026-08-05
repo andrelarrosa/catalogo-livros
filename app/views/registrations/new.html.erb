@@ -1,0 +1,50 @@
+<div class="mx-auto md:w-2/3 w-full">
+  <% if alert = flash[:alert] %>
+    <p class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block" id="alert"><%= alert %></p>
+  <% end %>
+
+  <% content_for :title, "Criar conta" %>
+
+  <h1 class="font-bold text-4xl">Criar conta</h1>
+
+  <%= form_with model: @user, url: registration_path do |form| %>
+    <% if @user.errors.any? %>
+      <div class="my-5 rounded-lg bg-red-50 p-4 text-red-600">
+        <h2 class="font-medium"><%= pluralize(@user.errors.count, "erro") %> impediram a criação da conta:</h2>
+
+        <ul class="mt-2 list-disc list-inside text-sm">
+          <% @user.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="my-5">
+      <%= form.label :email_address, "E-mail", class: "field-label" %>
+      <%= form.email_field :email_address, required: true, autofocus: true,
+            autocomplete: "username", placeholder: "voce@exemplo.com", class: "field-input" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :password, "Senha", class: "field-label" %>
+      <%= form.password_field :password, required: true, autocomplete: "new-password",
+            placeholder: "Mínimo de 8 caracteres", maxlength: 72, class: "field-input" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :password_confirmation, "Confirmação de senha", class: "field-label" %>
+      <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password",
+            placeholder: "Repita a senha", maxlength: 72, class: "field-input" %>
+    </div>
+
+    <div class="sm:flex sm:items-center sm:gap-4">
+      <%= form.submit "Criar conta", class: "btn btn-primary" %>
+
+      <div class="mt-4 text-sm text-gray-500 sm:mt-0">
+        Já tem conta?
+        <%= link_to "Entrar", new_session_path, class: "text-gray-700 underline hover:no-underline" %>
+      </div>
+    </div>
+  <% end %>
+</div>

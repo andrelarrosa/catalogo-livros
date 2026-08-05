@@ -16,6 +16,12 @@ module CatalogoLivros
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
 
+    # Mensagens de validação em português. O fallback garante que qualquer
+    # chave não traduzida caia no texto em inglês, em vez de virar
+    # "translation missing" na tela.
+    config.i18n.default_locale = :"pt-BR"
+    config.i18n.fallbacks = [ :en ]
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

@@ -1,0 +1,52 @@
+pt-BR:
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      blank: "não pode ficar em branco"
+      confirmation: "não confere com %{attribute}"
+      invalid: "não é válido"
+      taken: "já está em uso"
+      too_short: "é muito curto (mínimo de %{count} caracteres)"
+      too_long: "é muito longo (máximo de %{count} caracteres)"
+      not_a_number: "não é um número"
+      not_an_integer: "precisa ser um número inteiro"
+      greater_than: "precisa ser maior que %{count}"
+      less_than_or_equal_to: "precisa ser menor ou igual a %{count}"
+      required: "precisa ser preenchido"
+
+  activerecord:
+    errors:
+      messages:
+        record_invalid: "A validação falhou: %{errors}"
+        restrict_dependent_destroy:
+          has_many: "Não é possível excluir: existem %{record} associados"
+
+      # Mensagem específica por atributo: "senha" é feminino, então a
+      # mensagem genérica ("é muito curto") não concorda.
+      models:
+        user:
+          attributes:
+            password:
+              too_short: "é muito curta (mínimo de %{count} caracteres)"
+
+    models:
+      user: "Usuário"
+      book: "Livro"
+      author: "Autor"
+
+    attributes:
+      user:
+        email_address: "E-mail"
+        password: "Senha"
+        password_confirmation: "Confirmação de senha"
+      book:
+        title: "Título"
+        author: "Autor"
+        author_id: "Autor"
+        year: "Ano"
+        read: "Lido"
+      author:
+        name: "Nome"
+        bio: "Bio"
+        birth_year: "Ano de nascimento"
+        books: "livros"
