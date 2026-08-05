@@ -3,7 +3,7 @@ class AuthorsController < ApplicationController
 
     # GET /authors
     def index
-        @authors = Author.all
+        @authors = Current.user.authors
     end
 
     # GET /authors/1
@@ -12,7 +12,7 @@ class AuthorsController < ApplicationController
 
     # GET /authors/new
     def new
-        @author = Author.new
+        @author = Current.user.authors.new
     end
 
     # GET /authors/1/edit
@@ -21,7 +21,7 @@ class AuthorsController < ApplicationController
 
     # POST /authors
     def create
-        @author = Author.new(author_params)
+        @author = Current.user.authors.new(author_params)
 
         if @author.save
         redirect_to @author, notice: "Autor cadastrado com sucesso."
@@ -46,8 +46,10 @@ class AuthorsController < ApplicationController
     end
 
     private
+        # Escopado no find, não só no index: fora do escopo o registro
+        # não existe e a resposta é 404.
         def set_author
-            @author = Author.find(params.expect(:id))
+            @author = Current.user.authors.find(params.expect(:id))
         end
 
         def author_params

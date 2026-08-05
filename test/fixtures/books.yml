@@ -5,9 +5,11 @@ one:
   author: machado
   year: 1
   read: false
+  user: one
 
 two:
   title: MyString
   author: clarice
   year: 1
   read: false
+  user: one

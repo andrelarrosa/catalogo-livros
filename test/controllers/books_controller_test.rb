@@ -3,6 +3,7 @@ require "test_helper"
 class BooksControllerTest < ActionDispatch::IntegrationTest
   setup do
     @book = books(:one)
+    sign_in_as users(:one)
   end
 
   test "should get index" do
@@ -44,5 +45,22 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to books_url
+  end
+
+  test "should not show a book owned by another user" do
+    sign_in_as users(:two)
+
+    # show_exceptions = :rescuable no ambiente de teste: o RecordNotFound
+    # vira resposta 404 em vez de estourar como exceção.
+    get book_url(@book)
+    assert_response :not_found
+  end
+
+  test "index only lists the current user's books" do
+    sign_in_as users(:two)
+
+    get books_url
+    assert_response :success
+    assert_select "#books div[id^=book_]", count: 0
   end
 end

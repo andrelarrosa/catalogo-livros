@@ -4,7 +4,7 @@ class BooksController < ApplicationController
 
   # GET /books or /books.json
   def index
-    @books = Book.includes(:author).all
+    @books = Current.user.books.includes(:author)
   end
 
   # GET /books/1 or /books/1.json
@@ -13,7 +13,7 @@ class BooksController < ApplicationController
 
   # GET /books/new
   def new
-    @book = Book.new
+    @book = Current.user.books.new
   end
 
   # GET /books/1/edit
@@ -22,7 +22,7 @@ class BooksController < ApplicationController
 
   # POST /books or /books.json
   def create
-    @book = Book.new(book_params)
+    @book = Current.user.books.new(book_params)
 
     respond_to do |format|
       if @book.save
@@ -60,12 +60,14 @@ class BooksController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    # Escopar o find (e não só o index) é o que impede alguém de abrir
+    # /books/1 na marra: fora do escopo o registro simplesmente não existe.
     def set_book
-      @book = Book.find(params.expect(:id))
+      @book = Current.user.books.find(params.expect(:id))
     end
 
     def set_authors
-      @authors = Author.order(:name)
+      @authors = Current.user.authors.order(:name)
     end
 
     # Only allow a list of trusted parameters through.
